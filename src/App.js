@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-
 import './App.css';
+const backend_url = process.env.backend_url;
 
 class App extends Component {
 	constructor(props) {
@@ -19,13 +19,13 @@ class App extends Component {
 		const data = new FormData();
 		data.append('file', this.uploadInput.files[0]);
 		data.append('filename', this.fileName.value);
-
-		fetch('http://localhost:4000/upload', {
+        // console.log(process.env);
+		fetch(`http://${backend_url}/upload`, {
 			method: 'POST',
 			body: data
 		}).then(response => {
 			response.json().then(body => {
-				this.setState({ imageURL: `http://localhost:4000/${body.file}` });
+				this.setState({ imageURL: `http://${backend_url}/${body.file}` });
 			});
 		});
 	}
