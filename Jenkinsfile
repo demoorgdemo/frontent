@@ -37,7 +37,7 @@ choice(choices: '2\n1\n3\n4\n5', description: 'Application-Instance', name: 'App
     stages {
             stage('Checkout'){
             steps {
-               slackSend channel: "#build_notification", message: "STATUS: *Started*:woman-running:\nJob Name: *${env.JOB_NAME}* \nBUILD: *[${env.BUILD_NUMBER}]* \nURL: (${env.BUILD_URL})\nGit-Commits List -\n${getChangeString().replace('<br>', '\n')}" ,color: "#f9f904"
+               slackSend channel: "#build_notifications", message: "STATUS: *Started*:woman-running:\nJob Name: *${env.JOB_NAME}* \nBUILD: *[${env.BUILD_NUMBER}]* \nURL: (${env.BUILD_URL})\nGit-Commits List -\n${getChangeString().replace('<br>', '\n')}" ,color: "#f9f904"
                 echo 'Checking out code from scm...'
                 checkout scm
             }
@@ -55,7 +55,7 @@ choice(choices: '2\n1\n3\n4\n5', description: 'Application-Instance', name: 'App
     post {
     success {
           sh ' echo slack notification and email'
-                     slackSend channel: "#build_notification", message: "STATUS: *Completed* :thumbsup_all:\nJob Name: *${env.JOB_NAME}* \nBUILD: *[${env.BUILD_NUMBER}]* \nURL: (${env.BUILD_URL})" ,color: "#0fc64f"
+                     slackSend channel: "#build_notifications", message: "STATUS: *Completed* :thumbsup_all:\nJob Name: *${env.JOB_NAME}* \nBUILD: *[${env.BUILD_NUMBER}]* \nURL: (${env.BUILD_URL})" ,color: "#0fc64f"
     }
 }
     }
