@@ -24,7 +24,7 @@ choice(choices: '2\n1\n3\n4\n5', description: 'Application-Instance', name: 'App
     }
     post {
     success {
-          sh 'echo slack notification and email'
+          sh ' echo slack notification and email'
     }
 }
     }
