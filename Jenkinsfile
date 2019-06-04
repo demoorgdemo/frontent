@@ -25,7 +25,9 @@ pipeline {
        environment {
      ip = "10.0.2.177"
    }
-    agent any
+  	agent {
+		node { label 'jnlp-slave-node' }
+    	}
      triggers {
        // poll repo every 1 minute for changes
        pollSCM('0 1,7 * * *')
