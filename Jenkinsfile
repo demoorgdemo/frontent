@@ -25,7 +25,7 @@ pipeline {
 	agent {
 		node { label 'jnlp-slave-node' }
     	}
-  	options { buildDiscarder(logRotator(numToKeepStr: '10')) 
+	options { buildDiscarder(logRotator(numToKeepStr: '10')) }
     stages {
             stage('Checkout'){
             steps {
