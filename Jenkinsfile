@@ -22,20 +22,10 @@ def getChangeString() {
 }
 
 pipeline {
-       environment {
-     ip = "10.0.2.177"
-   }
-  	agent {
+	agent {
 		node { label 'jnlp-slave-node' }
     	}
-     triggers {
-       // poll repo every 1 minute for changes
-       pollSCM('0 1,7 * * *')
-   }
-       parameters {
-string(name: 'JavaVersion', defaultValue: '8.4.0', description: 'Java compatibility for building Demo App!!', trim: true)
-choice(choices: '2\n1\n3\n4\n5', description: 'Application-Instance', name: 'ApplicationInstance')
-}
+  	options { buildDiscarder(logRotator(numToKeepStr: '10')) 
     stages {
             stage('Checkout'){
             steps {
